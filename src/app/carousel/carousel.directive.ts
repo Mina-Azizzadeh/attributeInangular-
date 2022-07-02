@@ -13,13 +13,14 @@ import { IcrouselContext } from "./app.interface";
 export class CarouselDirective implements OnInit {
   public context: IcrouselContext | null = null;
   public index = 0;
+  public timer;
 
   constructor(
     private templateRef: TemplateRef<IcrouselContext>,
     private viewContent: ViewContainerRef
   ) {}
 
-  @Input('appCarouselFrom') images: string[];
+  @Input("appCarouselFrom") images: string[];
 
   ngOnInit(): void {
     this.context = {
@@ -30,6 +31,7 @@ export class CarouselDirective implements OnInit {
       },
     };
     this.viewContent.createEmbeddedView(this.templateRef, this.context);
+    this.playAuto()
   }
 
   public next() {
@@ -46,5 +48,15 @@ export class CarouselDirective implements OnInit {
       this.index = this.images.length - 1;
     }
     this.context.$implicit = this.images[this.index];
+  }
+
+  public playAuto() {
+    this.timer = setInterval(() => {
+      this.next();
+    }, 3000);
+  }
+
+  public clearSetInterval() {
+    this.clearSetInterval()
   }
 }
