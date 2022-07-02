@@ -14,13 +14,18 @@
   </div>
 </div>
 <p appBasicHighlight>this is basic highlight</p>
-<p appBetterHighlight [defaultColor]="'yellow'"
- [backgroundColorChange]="'aqua'">this is a better highlight</p>
- <!-- value check -->
- <div [ngSwitch]="value">
+<p appBetterHighlight [defaultColor]="'yellow'" [backgroundColorChange]="'aqua'">this is a better highlight</p>
+<!-- value check -->
+<div [ngSwitch]="value">
   <p *ngSwitchCase="5">value is 5</p>
   <p *ngSwitchCase="10">value is 10</p>
   <p *ngSwitchCase="15">value is 15</p>
   <p *ngSwitchCase="20">value is 20</p>
   <p *ngSwitchCase="25">value is 25</p>
- </div>
+</div>
+
+<div *appCarousel="let image from images ; let ctrl = controller">
+  <img [src]="image" width="300px" height="250px">
+  <button (click)="ctrl.next()">next</button>
+  <button (click)="ctrl.prev()">prev</button>
+</div>
